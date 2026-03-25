@@ -1,0 +1,145 @@
+<header class="header">
+  <div class="container header-container">
+    <div class="logo-container">
+      <img src="assets/profile.jpg" alt="Nicolas Bezerra Bini" class="profile-img">
+    </div>
+    <nav class="mobile-menu" [class.open]="isMenuOpen">
+      <ul>
+        <li><a href="#sobre" (click)="closeMenu()">Sobre</a></li>
+        <li><a href="#experiencia" (click)="closeMenu()">Experiência</a></li>
+        <li><a href="#educacao" (click)="closeMenu()">Educação</a></li>
+        <li><a href="#projetos" (click)="closeMenu()">Projetos</a></li>
+        <li><a href="#habilidades" (click)="closeMenu()">Habilidades</a></li>
+        <li><a href="#certificacoes" (click)="closeMenu()">Certificações</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="hamburger-btn" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
+        <i class="fas" [ngClass]="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+      </button>
+      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? 'Mudar para modo claro' : 'Mudar para modo escuro'">
+        <i class="fas" [ngClass]="isDarkMode ? 'fa-sun' : 'fa-moon'"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section class="hero">
+      <h1>Nicolas Bezerra Bini</h1>
+      <h2>Software Engineer at Bradesco</h2>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/nicolas-bezerra-bini/" target="_blank"><i class="devicon-linkedin-plain colored"></i> LinkedIn</a>
+        <a href="https://github.com/niicsz" target="_blank"><i class="devicon-github-original" [ngClass]="isDarkMode ? 'colored-white' : 'colored-black'" [ngStyle]="{'color': isDarkMode ? 'white' : 'black'}"></i> GitHub</a>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <h2 class="section-title">Sobre Mim</h2>
+      <p>
+        Sou Desenvolvedor de Software especializado em Java e Spring Boot, atuando no Bradesco na construção e manutenção de soluções de alta performance e escala. Tenho experiência com Nest.js, Angular, Docker, SQL Server e MongoDB, além de certificação Azure, o que me permite trabalhar com arquiteturas modernas, integrações robustas e ambientes em nuvem.
+      </p>
+      <p>
+        Minha trajetória combina desenvolvimento Back-End, conhecimento em sistemas distribuídos e participação ativa em squads ágeis, sempre com foco em entregar software confiável, seguro e alinhado às necessidades do negócio. Sou movido por desafios técnicos, melhoria contínua e boas práticas de engenharia.
+      </p>
+      <p>
+        Atualmente curso Análise e Desenvolvimento de Sistemas na Universidade São Judas Tadeu, buscando constantemente aprofundar minhas habilidades e contribuir com soluções que gerem impacto real para as empresas e para os usuários.
+      </p>
+    </section>
+
+    <section id="experiencia">
+      <h2 class="section-title">Experiência Profissional</h2>
+
+      <div class="experience-card">
+        <div class="company-header">
+          <img src="assets/bradesco.png" alt="Bradesco Logo" class="company-logo">
+          <div>
+            <h3>Junior Software Engineer</h3>
+            <h4>Bradesco</h4>
+          </div>
+        </div>
+        <span class="date">Fev 2025 - O momento · Híbrido, Osasco, SP</span>
+        <p>
+          Atuei no Btoken – Token Corporativo do Bradesco, contribuindo para o desenvolvimento e manutenção de um sistema de geração de tokens OTP usado em vários canais bancários. Construí microsserviços com Spring Boot, desenvolvi APIs REST (documentadas com Swagger/OpenAPI) e implementei testes unitários com JUnit 5 e Mockito. Utilizei Java, Kafka, Azure, SQL Server e Databricks para persistência de dados, processamento e relatórios analíticos.
+        </p>
+        <p>
+          Posteriormente, integrei a Squad DocMatch (Análise de Documentos), desenvolvendo integrações com a API da Serasa para validação e autenticação de documentos. Trabalhei com MongoDB e SQL Server para armazenamento e correlação de dados, garantindo segurança e escalabilidade nos processos de onboarding.
+        </p>
+        <p>
+          Atualmente, faço parte da Squad Bex for Dev, em um contexto de Platform Engineering utilizando o Backstage (Internal Developer Platform). Apoio iniciativas para melhorar a experiência do desenvolvedor (DX), mantendo serviços da plataforma interna. Meu dia a dia inclui uso de Linux (WSL, RHEL), containers com Podman e Docker, e criação de Shell scripts para automação de tarefas.
+        </p>
+      </div>
+    </section>
+
+    <section id="educacao">
+      <h2 class="section-title">Formação Acadêmica</h2>
+      <div class="experience-card">
+        <div class="company-header">
+          <i class="fas fa-university fa-2x" style="padding: 10px; color: var(--text-primary);"></i>
+          <div>
+            <h3>Técnologo em Análise e Desenvolvimento de Sistemas</h3>
+            <h4>Universidade São Judas Tadeu</h4>
+          </div>
+        </div>
+        <span class="date">Fev 2024 - Jun 2026</span>
+      </div>
+      <div class="experience-card">
+        <div class="company-header">
+          <i class="fas fa-graduation-cap fa-2x" style="padding: 10px; color: var(--text-primary);"></i>
+          <div>
+            <h3>Técnico em Desenvolvimento de Sistemas</h3>
+            <h4>Fundação Instituto Tecnológico de Osasco</h4>
+          </div>
+        </div>
+        <span class="date">Jan 2020 - Dez 2023</span>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <h2 class="section-title">Projetos</h2>
+      <div class="projects-grid">
+        <div class="project-card" *ngFor="let projeto of projetos">
+          <div class="project-header">
+            <h3>
+              {{ projeto.name }}
+              <span *ngIf="projeto.inDevelopment" class="dev-badge">Em desenvolvimento</span>
+            </h3>
+            <i [class]="projeto.icon"></i>
+          </div>
+          <p>{{ projeto.description }}</p>
+          <div class="project-links">
+            <a [href]="projeto.url" target="_blank" rel="noopener noreferrer">
+              <i class="devicon-github-original" [ngClass]="isDarkMode ? 'colored-white' : 'colored-black'" [ngStyle]="{'color': isDarkMode ? 'white' : 'black'}"></i> Ver no GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <h2 class="section-title">Habilidades & Tecnologias</h2>
+      <div class="skills-grid">
+        <div class="skill-card" *ngFor="let skill of skills">
+          <i [class]="skill.icon" class="skill-icon" [ngStyle]="{'color': (skill.name === 'Backstage' ? 'var(--text-primary)' : '')}"></i>
+          <span>{{ skill.name }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificacoes">
+      <h2 class="section-title">Certificações</h2>
+      <div class="certification-card" *ngFor="let cert of certifications">
+        <i [class]="cert.icon" class="cert-icon" [ngStyle]="{'color': (cert.icon.includes('fas') ? 'var(--text-primary)' : '')}"></i>
+        <div class="cert-info">
+          <h3>{{ cert.title }}</h3>
+          <h4>{{ cert.issuer }}</h4>
+          <span class="date">Emitido em {{ cert.date }}</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+<router-outlet></router-outlet>
