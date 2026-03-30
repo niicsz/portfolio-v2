@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     { name: 'SQL Server', icon: 'devicon-microsoftsqlserver-plain colored' },
     { name: 'MongoDB', icon: 'devicon-mongodb-plain colored' },
     { name: 'Azure', icon: 'devicon-azure-plain colored' },
-    { name: 'Backstage', icon: 'fas fa-layer-group' }
+    { name: 'Backstage', icon: 'assets/backstage-icon.svg' }
   ];
 
   certifications = [
