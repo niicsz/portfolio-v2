@@ -123,7 +123,8 @@
       <h2 class="section-title">Habilidades & Tecnologias</h2>
       <div class="skills-grid">
         <div class="skill-card" *ngFor="let skill of skills">
-          <i [class]="skill.icon" class="skill-icon" [ngStyle]="{'color': (skill.name === 'Backstage' ? 'var(--text-primary)' : '')}"></i>
+          <img *ngIf="skill.icon.includes('assets/')" [src]="skill.icon" [alt]="skill.name + ' icon'" style="width: 48px; height: 48px; object-fit: contain;">
+          <i *ngIf="!skill.icon.includes('assets/')" [class]="skill.icon" class="skill-icon"></i>
           <span>{{ skill.name }}</span>
         </div>
       </div>
