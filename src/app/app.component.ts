@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+  private cdr = inject(ChangeDetectorRef);
+
   title = 'Nicolas Bezerra Bini - Portfolio';
   isDarkMode = true;
   isMenuOpen = false;
@@ -70,14 +70,17 @@ export class AppComponent implements OnInit {
     this.isDarkMode = !this.isDarkMode;
     localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
     this.updateTheme();
+    this.cdr.markForCheck();
   }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+    this.cdr.markForCheck();
   }
 
   closeMenu() {
     this.isMenuOpen = false;
+    this.cdr.markForCheck();
   }
 
   updateTheme() {
