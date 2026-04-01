@@ -15,10 +15,10 @@
     </nav>
     <div class="header-actions">
       <button class="hamburger-btn" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
-        <i class="fas" [ngClass]="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+        <i class="fas" [class.fa-times]="isMenuOpen" [class.fa-bars]="!isMenuOpen"></i>
       </button>
       <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? 'Mudar para modo claro' : 'Mudar para modo escuro'">
-        <i class="fas" [ngClass]="isDarkMode ? 'fa-sun' : 'fa-moon'"></i>
+        <i class="fas" [class.fa-sun]="isDarkMode" [class.fa-moon]="!isDarkMode"></i>
       </button>
     </div>
   </div>
@@ -32,8 +32,8 @@
       <h2>Software Engineer at Bradesco</h2>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/nicolas-bezerra-bini/" target="_blank"><i class="devicon-linkedin-plain colored"></i> LinkedIn</a>
-        <a href="https://github.com/niicsz" target="_blank"><i class="devicon-github-original" [ngClass]="isDarkMode ? 'colored-white' : 'colored-black'" [ngStyle]="{'color': isDarkMode ? 'white' : 'black'}"></i> GitHub</a>
-        <a href="assets/Nicolas_Bini_CV.pdf" target="_blank" download="Nicolas_Bini_CV.pdf"><i class="fas fa-file-pdf" [ngStyle]="{'color': isDarkMode ? 'white' : 'black'}"></i> Baixar Currículo</a>
+        <a href="https://github.com/niicsz" target="_blank"><i class="devicon-github-original" [style.color]="isDarkMode ? 'white' : 'black'"></i> GitHub</a>
+        <a href="assets/Nicolas_Bini_CV.pdf" target="_blank" download="Nicolas_Bini_CV.pdf"><i class="fas fa-file-pdf" [style.color]="isDarkMode ? 'white' : 'black'"></i> Baixar Currículo</a>
       </div>
     </section>
 
@@ -101,47 +101,58 @@
     <section id="projetos">
       <h2 class="section-title">Projetos</h2>
       <div class="projects-grid">
-        <div class="project-card" *ngFor="let projeto of projetos">
-          <div class="project-header">
-            <h3>
-              {{ projeto.name }}
-              <span *ngIf="projeto.inDevelopment" class="dev-badge">Em desenvolvimento</span>
-            </h3>
-            <i [class]="projeto.icon"></i>
+        @for (projeto of projetos; track projeto.name) {
+          <div class="project-card">
+            <div class="project-header">
+              <h3>
+                {{ projeto.name }}
+                @if (projeto.inDevelopment) {
+                  <span class="dev-badge">Em desenvolvimento</span>
+                }
+              </h3>
+              <i [class]="projeto.icon"></i>
+            </div>
+            <p>{{ projeto.description }}</p>
+            <div class="project-links">
+              <a [href]="projeto.url" target="_blank" rel="noopener noreferrer">
+                <i class="devicon-github-original" [style.color]="isDarkMode ? 'white' : 'black'"></i> Ver no GitHub
+              </a>
+            </div>
           </div>
-          <p>{{ projeto.description }}</p>
-          <div class="project-links">
-            <a [href]="projeto.url" target="_blank" rel="noopener noreferrer">
-              <i class="devicon-github-original" [ngClass]="isDarkMode ? 'colored-white' : 'colored-black'" [ngStyle]="{'color': isDarkMode ? 'white' : 'black'}"></i> Ver no GitHub
-            </a>
-          </div>
-        </div>
+        }
       </div>
     </section>
 
     <section id="habilidades">
       <h2 class="section-title">Habilidades & Tecnologias</h2>
       <div class="skills-grid">
-        <div class="skill-card" *ngFor="let skill of skills">
-          <img *ngIf="skill.icon.includes('assets/')" [src]="skill.icon" [alt]="skill.name + ' icon'" style="width: 48px; height: 48px; object-fit: contain;">
-          <i *ngIf="!skill.icon.includes('assets/')" [class]="skill.icon" class="skill-icon"></i>
-          <span>{{ skill.name }}</span>
-        </div>
+        @for (skill of skills; track skill.name) {
+          <div class="skill-card">
+            @if (skill.icon.includes('assets/')) {
+              <img [src]="skill.icon" [alt]="skill.name + ' icon'" style="width: 48px; height: 48px; object-fit: contain;">
+            } @else {
+              <i [class]="skill.icon" class="skill-icon"></i>
+            }
+            <span>{{ skill.name }}</span>
+          </div>
+        }
       </div>
     </section>
 
     <section id="certificacoes">
       <h2 class="section-title">Certificações</h2>
-      <div class="certification-card" *ngFor="let cert of certifications">
-        <i [class]="cert.icon" class="cert-icon" [ngStyle]="{'color': (cert.icon.includes('fas') ? 'var(--text-primary)' : '')}"></i>
-        <div class="cert-info">
-          <h3>{{ cert.title }}</h3>
-          <h4>{{ cert.issuer }}</h4>
-          <span class="date">Emitido em {{ cert.date }}</span>
+      @for (cert of certifications; track cert.title) {
+        <div class="certification-card">
+          <i [class]="cert.icon" class="cert-icon" [style.color]="cert.icon.includes('fas') ? 'var(--text-primary)' : ''"></i>
+          <div class="cert-info">
+            <h3>{{ cert.title }}</h3>
+            <h4>{{ cert.issuer }}</h4>
+            <span class="date">Emitido em {{ cert.date }}</span>
+          </div>
         </div>
-      </div>
+      }
     </section>
 
   </div>
 </main>
-<router-outlet></router-outlet>
+<router-outlet />
