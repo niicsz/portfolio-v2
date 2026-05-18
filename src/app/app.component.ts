@@ -29,8 +29,9 @@ export class AppComponent implements OnInit {
   ];
 
   certifications = [
-    { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', date: 'Mar 2026', icon: 'devicon-redhat-plain colored' },
-    { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', date: 'Mar 2026', icon: 'devicon-redhat-plain colored' },
+    { title: 'Bootcamp SRE Bronze', issuer: 'Bradesco', date: 'Mai 2026', icon: 'assets/sre-bronze.png' },
+    { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', date: 'Mar 2026', icon: 'assets/red_hat.png' },
+    { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', date: 'Mar 2026', icon: 'assets/red_hat.png' },
     { title: 'Batismo de Java', issuer: 'Java10x', date: 'Jan 2026', icon: 'devicon-java-plain colored' },
     { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', date: 'Jun 2025', icon: 'devicon-azure-plain colored' },
     { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', date: 'Mai 2025', icon: 'fas fa-database' },
