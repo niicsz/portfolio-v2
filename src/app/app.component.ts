@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   ];
 
   certifications = [
+    { title: 'GH-300 Github Copilot', issuer: 'GitHub', date: 'Mai 2026', icon: 'assets/github.png' },
     { title: 'Bootcamp SRE Bronze', issuer: 'Bradesco', date: 'Mai 2026', icon: 'assets/sre-bronze.png' },
     { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', date: 'Mar 2026', icon: 'assets/red_hat.png' },
     { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', date: 'Mar 2026', icon: 'assets/red_hat.png' },
@@ -51,8 +52,7 @@ export class AppComponent implements OnInit {
   projetos = [
     { name: 'BiniTech PDV', description: 'Sistema de Ponto de Venda (PDV) moderno e eficiente, focado na gestão de caixa.', url: 'https://github.com/niicsz/BiniTech-PDV', icon: 'devicon-java-plain colored' },
     { name: 'Clínica Médica App', description: 'Sistema de gestão para clínica médica, com cadastro de usuários, pacientes, médicos e agendamento de consultas.', url: 'https://github.com/niicsz/clinica-medica', icon: 'devicon-java-plain colored', inDevelopment: true },
-    { name: 'Locadora Hexagonal & HMAC', description: 'Sistema de locadora de carros aplicando arquitetura hexagonal e HMAC para segurança e integridade das requisições.', url: 'https://github.com/niicsz/locadora-hex-hmac', icon: 'devicon-java-plain colored', inDevelopment: true },
-    { name: 'URL Shortener', description: 'Encurtador de URLs rápido e escalável construído com Java e banco de dados relacional.', url: 'https://github.com/niicsz/url-shortener', icon: 'devicon-java-plain colored', inDevelopment: true },
+    { name: 'URL Shortener', description: 'Encurtador de URLs rápido e escalável construído com Java e banco de dados relacional.', url: 'https://github.com/niicsz/url-shortener', icon: 'devicon-java-plain colored' },
     { name: 'App Inspirado no Linktree', description: 'Aplicação inspirada no Linktree, permitindo centralizar links em uma página personalizada e de fácil acesso.', url: 'https://github.com/niicsz/App-Inspirado-Linktree', icon: 'devicon-css3-plain colored' },
     { name: 'Calculadora de Aumento Percentual', description: 'Projeto de calculadora que aplica aumento percentual a um valor inicial.', url: 'https://github.com/niicsz/Calculadora-de-Aumento-Percentual', icon: 'devicon-html5-plain colored' }
   ];
