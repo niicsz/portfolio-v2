@@ -50,11 +50,12 @@ export class AppComponent implements OnInit {
     { title: 'Privacidade e Proteção de Dados (LGPD)', issuer: 'Senai São Paulo', date: 'Mar 2023', icon: 'fas fa-user-shield' }
   ];
 
-  projetos = [
+  projetos: { name: string; description: string; url: string; icon: string; inDevelopment?: boolean }[] = [
     { name: 'BiniTech PDV', description: 'Sistema de Ponto de Venda (PDV) moderno e eficiente, focado na gestão de caixa.', url: 'https://github.com/niicsz/BiniTech-PDV', icon: 'devicon-java-plain colored' },
-    { name: 'Clínica Médica App', description: 'Sistema de gestão para clínica médica, com cadastro de usuários, pacientes, médicos e agendamento de consultas.', url: 'https://github.com/niicsz/clinica-medica', icon: 'devicon-java-plain colored', inDevelopment: true },
+    { name: 'BiniTech Auth', description: 'Serviço reutilizável de autenticação com arquitetura hexagonal, Java 21, Spring Boot, MongoDB, JWT e Argon2.', url: 'https://github.com/niicsz/BiniTech-Auth', icon: 'devicon-java-plain colored' },
+    { name: 'BiniTech PDV Frontend', description: 'SPA Angular 21 do BiniTech PDV SaaS multi-tenant, com fluxos de venda, gestão, relatórios e assinatura via Stripe.', url: 'https://github.com/niicsz/BiniTech-PDV-frontend', icon: 'devicon-angularjs-plain colored' },
+    { name: 'Logística CEP API', description: 'API REST para consulta de CEPs com abordagem API-first, resiliência, testes de integração e infraestrutura AWS via Terraform.', url: 'https://github.com/niicsz/cep-api', icon: 'devicon-java-plain colored' },
     { name: 'URL Shortener', description: 'Encurtador de URLs rápido e escalável construído com Java e banco de dados relacional.', url: 'https://github.com/niicsz/url-shortener', icon: 'devicon-java-plain colored' },
-    { name: 'App Inspirado no Linktree', description: 'Aplicação inspirada no Linktree, permitindo centralizar links em uma página personalizada e de fácil acesso.', url: 'https://github.com/niicsz/App-Inspirado-Linktree', icon: 'devicon-css3-plain colored' },
     { name: 'Calculadora de Aumento Percentual', description: 'Projeto de calculadora que aplica aumento percentual a um valor inicial.', url: 'https://github.com/niicsz/Calculadora-de-Aumento-Percentual', icon: 'devicon-html5-plain colored' }
   ];
 
