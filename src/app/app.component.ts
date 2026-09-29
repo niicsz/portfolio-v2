@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
   ];
 
   projetos: { name: string; description: string; url: string; icon: string; inDevelopment?: boolean }[] = [
+    { name: 'Resilience Lab', description: 'Laboratório de resiliência em arquitetura hexagonal com Java 25, Spring Boot 4 e Resilience4j: seis padrões medidos no Grafana com k6 e WireMock.', url: 'https://github.com/niicsz/resilience-lab-hexagonal', icon: 'devicon-java-plain colored' },
     { name: 'BiniTech PDV', description: 'Sistema de Ponto de Venda (PDV) moderno e eficiente, focado na gestão de caixa.', url: 'https://github.com/niicsz/BiniTech-PDV', icon: 'devicon-java-plain colored' },
     { name: 'BiniTech Auth', description: 'Serviço reutilizável de autenticação com arquitetura hexagonal, Java 21, Spring Boot, MongoDB, JWT e Argon2.', url: 'https://github.com/niicsz/BiniTech-Auth', icon: 'devicon-java-plain colored' },
     { name: 'BiniTech PDV Frontend', description: 'SPA Angular 21 do BiniTech PDV SaaS multi-tenant, com fluxos de venda, gestão, relatórios e assinatura via Stripe.', url: 'https://github.com/niicsz/BiniTech-PDV-frontend', icon: 'devicon-angularjs-plain colored' },
