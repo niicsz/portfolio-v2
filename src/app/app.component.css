@@ -295,6 +295,16 @@
   font-size: 3rem;
 }
 
+/* devicon colore o Angular de branco e Linux/Bash de preto: some em um dos temas */
+.devicon-angular-plain.colored {
+  color: #dd0031;
+}
+
+.devicon-linux-plain.colored,
+.devicon-bash-plain.colored {
+  color: var(--text-primary);
+}
+
 .experience-card, .certification-card {
   background-color: var(--card-bg);
   padding: 2rem;
