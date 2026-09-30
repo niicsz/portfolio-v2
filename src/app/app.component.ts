@@ -25,12 +25,6 @@ export class AppComponent implements OnInit {
     { name: 'Nest.js', icon: 'devicon-nestjs-original colored' },
     { name: 'Swagger', icon: 'devicon-swagger-plain colored' },
     { name: 'Angular', icon: 'devicon-angular-plain colored' },
-    { name: 'Angular Material', icon: 'devicon-angularmaterial-plain colored' },
-    { name: 'RxJS', icon: 'devicon-rxjs-plain colored' },
-    { name: 'HTML5', icon: 'devicon-html5-plain colored' },
-    { name: 'CSS3', icon: 'devicon-css3-plain colored' },
-    { name: 'Sass', icon: 'devicon-sass-original colored' },
-    { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
     { name: 'Docker', icon: 'devicon-docker-plain colored' },
     { name: 'Podman', icon: 'devicon-podman-plain colored' },
     { name: 'Linux', icon: 'devicon-linux-plain colored' },
@@ -48,11 +42,7 @@ export class AppComponent implements OnInit {
     { name: 'Cassandra', icon: 'devicon-cassandra-plain colored' },
     { name: 'Prometheus', icon: 'devicon-prometheus-original colored' },
     { name: 'Grafana', icon: 'devicon-grafana-plain colored' },
-    { name: 'k6', icon: 'devicon-k6-original colored' },
-    { name: 'JUnit', icon: 'devicon-junit-plain colored' },
-    { name: 'Jest', icon: 'devicon-jest-plain colored' },
-    { name: 'Vitest', icon: 'devicon-vitest-plain colored' },
-    { name: 'Backstage', icon: 'assets/backstage-icon.svg' }
+    { name: 'k6', icon: 'devicon-k6-original colored' }
   ];
 
   certifications = [
