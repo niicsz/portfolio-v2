@@ -3,6 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { INTERVIEW_API_BASE_URL } from './interview-api.config';
 import { InterviewResult, InterviewService } from './interview.service';
+import { LanguageService } from '../i18n/language.service';
 
 describe('InterviewService', () => {
   const baseUrl = 'https://api.example.test/';
@@ -11,6 +12,7 @@ describe('InterviewService', () => {
   let http: HttpTestingController;
 
   beforeEach(() => {
+    localStorage.clear();
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
@@ -22,7 +24,10 @@ describe('InterviewService', () => {
     http = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => http.verify());
+  afterEach(() => {
+    http.verify();
+    localStorage.clear();
+  });
 
   function ask(question: string): InterviewResult[] {
     const results: InterviewResult[] = [];
@@ -119,5 +124,18 @@ describe('InterviewService', () => {
     http.expectOne(endpoint).flush('boom', { status: 500, statusText: 'Server Error' });
     expect(results[0]).toMatchObject({ kind: 'error', httpStatus: 500 });
     expect(results[0].text).toContain('Algo deu errado');
+  });
+
+  it('uses English fallbacks instead of the Portuguese server message in English mode', () => {
+    TestBed.inject(LanguageService).set('en');
+
+    const results = ask('Where does he study?');
+    http
+      .expectOne(endpoint)
+      .flush({ status: 503, message: 'O assistente está indisponível no momento.' }, { status: 503, statusText: 'Service Unavailable' });
+
+    expect(results).toEqual([
+      { kind: 'error', httpStatus: 503, text: 'The assistant is temporarily unavailable. Please try again later.' }
+    ]);
   });
 });

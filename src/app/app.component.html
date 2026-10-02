@@ -5,19 +5,22 @@
     </div>
     <nav class="mobile-menu" [class.open]="isMenuOpen">
       <ul>
-        <li><a href="#sobre" (click)="closeMenu()">Sobre</a></li>
-        <li><a href="#experiencia" (click)="closeMenu()">Experiência</a></li>
-        <li><a href="#educacao" (click)="closeMenu()">Educação</a></li>
-        <li><a href="#projetos" (click)="closeMenu()">Projetos</a></li>
-        <li><a href="#habilidades" (click)="closeMenu()">Habilidades</a></li>
-        <li><a href="#certificacoes" (click)="closeMenu()">Certificações</a></li>
+        <li><a href="#sobre" (click)="closeMenu()">{{ t().nav.about }}</a></li>
+        <li><a href="#experiencia" (click)="closeMenu()">{{ t().nav.experience }}</a></li>
+        <li><a href="#educacao" (click)="closeMenu()">{{ t().nav.education }}</a></li>
+        <li><a href="#projetos" (click)="closeMenu()">{{ t().nav.projects }}</a></li>
+        <li><a href="#habilidades" (click)="closeMenu()">{{ t().nav.skills }}</a></li>
+        <li><a href="#certificacoes" (click)="closeMenu()">{{ t().nav.certifications }}</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <button class="hamburger-btn" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
+      <button class="hamburger-btn" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen" [attr.aria-label]="t().header.toggleMenu">
         <i class="fas" [class.fa-times]="isMenuOpen" [class.fa-bars]="!isMenuOpen"></i>
       </button>
-      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? 'Mudar para modo claro' : 'Mudar para modo escuro'">
+      <button class="theme-toggle lang-toggle" (click)="toggleLanguage()" [attr.aria-label]="t().header.switchLanguage" [attr.title]="t().header.switchLanguage">
+        {{ t().header.otherLanguageCode }}
+      </button>
+      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? t().header.toLightMode : t().header.toDarkMode">
         <i class="fas" [class.fa-sun]="isDarkMode" [class.fa-moon]="!isDarkMode"></i>
       </button>
     </div>
@@ -29,29 +32,23 @@
 
     <section class="hero">
       <h1>Nicolas Bezerra Bini</h1>
-      <h2>Software Engineer at Bradesco</h2>
+      <h2>{{ t().hero.role }}</h2>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/nicolas-bezerra-bini/" target="_blank"><i class="devicon-linkedin-plain colored"></i> LinkedIn</a>
         <a href="https://github.com/niicsz" target="_blank"><i class="devicon-github-original" [style.color]="isDarkMode ? 'white' : 'black'"></i> GitHub</a>
-        <a href="assets/Nicolas_Bini_CV.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf" [style.color]="isDarkMode ? 'white' : 'black'"></i> Ver Currículo</a>
+        <a href="assets/Nicolas_Bini_CV.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf" [style.color]="isDarkMode ? 'white' : 'black'"></i> {{ t().hero.resume }}</a>
       </div>
     </section>
 
     <section id="sobre">
-      <h2 class="section-title">Sobre Mim</h2>
-      <p>
-        Sou Desenvolvedor de Software especializado em Java e Spring Boot, atuando no Bradesco na construção e manutenção de soluções de alta performance e escala. Tenho experiência com Nest.js, Angular, Docker, SQL Server e MongoDB, além de certificação Azure, o que me permite trabalhar com arquiteturas modernas, integrações robustas e ambientes em nuvem.
-      </p>
-      <p>
-        Minha trajetória combina desenvolvimento Back-End, conhecimento em sistemas distribuídos e participação ativa em squads ágeis, sempre com foco em entregar software confiável, seguro e alinhado às necessidades do negócio. Sou movido por desafios técnicos, melhoria contínua e boas práticas de engenharia.
-      </p>
-      <p>
-        Sou tecnólogo em Análise e Desenvolvimento de Sistemas pela Universidade São Judas Tadeu e atualmente curso MBA em Engenharia de Software na Universidade de São Paulo (USP), buscando aprofundar minhas habilidades e contribuir com soluções que gerem impacto real para as empresas e para os usuários.
-      </p>
+      <h2 class="section-title">{{ t().about.title }}</h2>
+      @for (paragraph of t().about.paragraphs; track $index) {
+        <p>{{ paragraph }}</p>
+      }
     </section>
 
     <section id="experiencia">
-      <h2 class="section-title">Experiência Profissional</h2>
+      <h2 class="section-title">{{ t().experience.title }}</h2>
 
       <div class="experience-card">
         <div class="company-header">
@@ -61,71 +58,47 @@
             <h4>Bradesco</h4>
           </div>
         </div>
-        <span class="date">Fev 2025 - O momento · Híbrido, Osasco, SP</span>
-        <p>
-          Atuei no Btoken – Token Corporativo do Bradesco, contribuindo para o desenvolvimento e manutenção de um sistema de geração de tokens OTP usado em vários canais bancários. Construí microsserviços com Spring Boot, desenvolvi APIs REST (documentadas com Swagger/OpenAPI) e implementei testes unitários com JUnit 5 e Mockito. Utilizei Java, Kafka, Azure, SQL Server e Databricks para persistência de dados, processamento e relatórios analíticos.
-        </p>
-        <p>
-          Posteriormente, integrei a Squad DocMatch (Análise de Documentos), desenvolvendo integrações com a API da Serasa para validação e autenticação de documentos. Trabalhei com MongoDB e SQL Server para armazenamento e correlação de dados, garantindo segurança e escalabilidade nos processos de onboarding.
-        </p>
-        <p>
-          Atualmente, faço parte da Squad Bex for Dev, em um contexto de Platform Engineering utilizando o Backstage (Internal Developer Platform). Apoio iniciativas para melhorar a experiência do desenvolvedor (DX), mantendo serviços da plataforma interna. Meu dia a dia inclui uso de Linux (WSL, RHEL), containers com Podman e Docker, e criação de Shell scripts para automação de tarefas.
-        </p>
+        <span class="date">{{ t().experience.period }}</span>
+        @for (paragraph of t().experience.paragraphs; track $index) {
+          <p>{{ paragraph }}</p>
+        }
       </div>
     </section>
 
     <section id="educacao">
-      <h2 class="section-title">Formação Acadêmica</h2>
-      <div class="experience-card">
-        <div class="company-header">
-          <img src="assets/logo-usp.svg" alt="USP Logo" class="company-logo">
-          <div>
-            <h3>MBA em Engenharia de Software</h3>
-            <h4>Universidade de São Paulo (USP)</h4>
+      <h2 class="section-title">{{ t().education.title }}</h2>
+      @for (item of education; track item.degree) {
+        <div class="experience-card">
+          <div class="company-header">
+            <img [src]="item.logo" [alt]="item.alt" class="company-logo">
+            <div>
+              <h3>{{ t().education.degrees[item.degree] }}</h3>
+              <h4>{{ item.school ?? t().education.usp }}</h4>
+            </div>
           </div>
+          <span class="date">{{ educationPeriod(item) }}</span>
         </div>
-        <span class="date">2026 - Em andamento</span>
-      </div>
-      <div class="experience-card">
-        <div class="company-header">
-          <img src="assets/logo-usjt.svg" alt="USJT Logo" class="company-logo">
-          <div>
-            <h3>Técnologo em Análise e Desenvolvimento de Sistemas</h3>
-            <h4>Universidade São Judas Tadeu</h4>
-          </div>
-        </div>
-        <span class="date">Fev 2024 - Jun 2026</span>
-      </div>
-      <div class="experience-card">
-        <div class="company-header">
-          <img src="assets/FundaçãoInstitutoTecnológicodeOsasco.png" alt="FITO Logo" class="company-logo">
-          <div>
-            <h3>Técnico em Desenvolvimento de Sistemas</h3>
-            <h4>Fundação Instituto Tecnológico de Osasco</h4>
-          </div>
-        </div>
-        <span class="date">Jan 2020 - Dez 2023</span>
-      </div>
+      }
     </section>
 
     <section id="projetos">
-      <h2 class="section-title">Projetos</h2>
+      <h2 class="section-title">{{ t().projects.title }}</h2>
       <div class="projects-grid">
-        @for (projeto of projetos; track projeto.name) {
+        @for (projeto of projetos; track projeto.id) {
           <div class="project-card">
             <div class="project-header">
               <h3>
-                {{ projeto.name }}
+                {{ t().projects.items[projeto.id].name }}
                 @if (projeto.inDevelopment) {
-                  <span class="dev-badge">Em desenvolvimento</span>
+                  <span class="dev-badge">{{ t().projects.inDevelopment }}</span>
                 }
               </h3>
               <i [class]="projeto.icon"></i>
             </div>
-            <p>{{ projeto.description }}</p>
+            <p>{{ t().projects.items[projeto.id].description }}</p>
             <div class="project-links">
               <a [href]="projeto.url" target="_blank" rel="noopener noreferrer">
-                <i class="devicon-github-original" [style.color]="isDarkMode ? 'white' : 'black'"></i> Ver no GitHub
+                <i class="devicon-github-original" [style.color]="isDarkMode ? 'white' : 'black'"></i> {{ t().projects.viewOnGitHub }}
               </a>
             </div>
           </div>
@@ -134,7 +107,7 @@
     </section>
 
     <section id="habilidades">
-      <h2 class="section-title">Habilidades & Tecnologias</h2>
+      <h2 class="section-title">{{ t().skills.title }}</h2>
       <div class="skills-grid">
         @for (skill of skills; track skill.name) {
           <div class="skill-card">
@@ -150,7 +123,7 @@
     </section>
 
     <section id="certificacoes">
-      <h2 class="section-title">Certificações</h2>
+      <h2 class="section-title">{{ t().certifications.title }}</h2>
       @for (cert of certifications; track cert.title) {
         <div class="certification-card">
           @if (cert.icon.includes('assets/')) {
@@ -161,7 +134,7 @@
           <div class="cert-info">
             <h3>{{ cert.title }}</h3>
             <h4>{{ cert.issuer }}</h4>
-            <span class="date">Emitido em {{ cert.date }}</span>
+            <span class="date">{{ t().certifications.issuedOn }} {{ monthYear(cert.year, cert.month) }}</span>
           </div>
         </div>
       }

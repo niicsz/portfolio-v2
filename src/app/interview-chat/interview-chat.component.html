@@ -11,22 +11,25 @@
     <header class="chat-header">
       <span class="chat-avatar" aria-hidden="true"><i class="fas fa-user-tie"></i></span>
       <div class="chat-heading">
-        <h2 id="interview-chat-title">Entreviste o Nicolas</h2>
-        <p id="interview-chat-subtitle">Respostas geradas por IA com base no currículo</p>
+        <h2 id="interview-chat-title">{{ t().chat.title }}</h2>
+        <p id="interview-chat-subtitle">{{ t().chat.subtitle }}</p>
       </div>
-      <button type="button" class="icon-btn" (click)="close()" aria-label="Fechar chat de entrevista">
+      <button type="button" class="icon-btn lang-btn" (click)="toggleLanguage()" [attr.aria-label]="t().header.switchLanguage" [attr.title]="t().header.switchLanguage">
+        {{ t().header.otherLanguageCode }}
+      </button>
+      <button type="button" class="icon-btn" (click)="close()" [attr.aria-label]="t().chat.close">
         <i class="fas fa-times" aria-hidden="true"></i>
       </button>
     </header>
 
-    <div #log class="chat-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversa com o assistente" tabindex="0">
+    <div #log class="chat-log" role="log" aria-live="polite" aria-relevant="additions" [attr.aria-label]="t().chat.logLabel" tabindex="0">
       <div class="msg msg-assistant">
-        <p class="msg-text">Olá! Eu respondo perguntas sobre a carreira do Nicolas: experiência profissional, projetos, formação e stack. Pergunte o que quiser ou escolha uma sugestão abaixo.</p>
+        <p class="msg-text">{{ t().chat.intro }}</p>
       </div>
 
       @if (!hasAsked()) {
-        <ul class="suggestions" aria-label="Perguntas sugeridas">
-          @for (suggestion of suggestions; track suggestion) {
+        <ul class="suggestions" [attr.aria-label]="t().chat.suggestionsLabel">
+          @for (suggestion of suggestions(); track suggestion) {
             <li>
               <button type="button" class="suggestion" [disabled]="pending()" (click)="askSuggestion(suggestion)">{{ suggestion }}</button>
             </li>
@@ -42,20 +45,20 @@
           [class.msg-notice]="message.tone === 'notice'"
           [class.msg-error]="message.tone === 'error'"
         >
-          <span class="sr-only">{{ message.role === 'user' ? 'Você:' : 'Assistente:' }}</span>
+          <span class="sr-only">{{ message.role === 'user' ? t().chat.you : t().chat.assistant }}</span>
           @if (message.tone === 'error') {
             <i class="fas fa-exclamation-circle msg-icon" aria-hidden="true"></i>
           }
           <p class="msg-text">{{ message.text }}</p>
           @if (message.sources.length) {
-            <p class="msg-sources">Fontes: {{ message.sources.join(', ') }}</p>
+            <p class="msg-sources">{{ t().chat.sources }} {{ message.sources.join(', ') }}</p>
           }
         </div>
       }
 
       @if (pending()) {
         <div class="msg msg-assistant typing" role="status">
-          <span class="sr-only">O assistente está digitando</span>
+          <span class="sr-only">{{ t().chat.typing }}</span>
           <span class="dot" aria-hidden="true"></span>
           <span class="dot" aria-hidden="true"></span>
           <span class="dot" aria-hidden="true"></span>
@@ -64,7 +67,7 @@
     </div>
 
     <form class="chat-form" (submit)="onSubmit($event)">
-      <label for="interview-chat-input" class="sr-only">Sua pergunta</label>
+      <label for="interview-chat-input" class="sr-only">{{ t().chat.inputLabel }}</label>
       <textarea
         #input
         id="interview-chat-input"
@@ -73,13 +76,13 @@
         [attr.maxlength]="maxLength"
         (input)="onInput($event)"
         (keydown.enter)="onEnter($event)"
-        placeholder="Pergunte sobre experiência, projetos, formação..."
+        [placeholder]="t().chat.placeholder"
         aria-describedby="interview-chat-hint interview-chat-counter"
       ></textarea>
       <div class="chat-form-footer">
-        <span id="interview-chat-hint" class="hint">Enter envia · Shift+Enter quebra linha</span>
+        <span id="interview-chat-hint" class="hint">{{ t().chat.hint }}</span>
         <span id="interview-chat-counter" class="counter" [class.counter-limit]="draftLength() >= maxLength">{{ draftLength() }}/{{ maxLength }}</span>
-        <button type="submit" class="send-btn" [disabled]="!canSend()" aria-label="Enviar pergunta">
+        <button type="submit" class="send-btn" [disabled]="!canSend()" [attr.aria-label]="t().chat.send">
           <i class="fas fa-paper-plane" aria-hidden="true"></i>
         </button>
       </div>
@@ -95,10 +98,10 @@
   (click)="toggle()"
   [attr.aria-expanded]="isOpen()"
   aria-controls="interview-chat-panel"
-  [attr.aria-label]="isOpen() ? 'Fechar chat de entrevista' : 'Abrir chat: entreviste o Nicolas'"
+  [attr.aria-label]="isOpen() ? t().chat.close : t().chat.open"
 >
   <i class="fas" [class.fa-comments]="!isOpen()" [class.fa-times]="isOpen()" aria-hidden="true"></i>
   @if (!isOpen()) {
-    <span class="launcher-label">Me entreviste</span>
+    <span class="launcher-label">{{ t().chat.launcher }}</span>
   }
 </button>
