@@ -1,0 +1,104 @@
+@if (isOpen()) {
+  <section
+    #panel
+    id="interview-chat-panel"
+    class="chat-panel"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="interview-chat-title"
+    aria-describedby="interview-chat-subtitle"
+  >
+    <header class="chat-header">
+      <span class="chat-avatar" aria-hidden="true"><i class="fas fa-user-tie"></i></span>
+      <div class="chat-heading">
+        <h2 id="interview-chat-title">Entreviste o Nicolas</h2>
+        <p id="interview-chat-subtitle">Respostas geradas por IA com base no currículo</p>
+      </div>
+      <button type="button" class="icon-btn" (click)="close()" aria-label="Fechar chat de entrevista">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <div #log class="chat-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversa com o assistente" tabindex="0">
+      <div class="msg msg-assistant">
+        <p class="msg-text">Olá! Eu respondo perguntas sobre a carreira do Nicolas: experiência profissional, projetos, formação e stack. Pergunte o que quiser ou escolha uma sugestão abaixo.</p>
+      </div>
+
+      @if (!hasAsked()) {
+        <ul class="suggestions" aria-label="Perguntas sugeridas">
+          @for (suggestion of suggestions; track suggestion) {
+            <li>
+              <button type="button" class="suggestion" [disabled]="pending()" (click)="askSuggestion(suggestion)">{{ suggestion }}</button>
+            </li>
+          }
+        </ul>
+      }
+
+      @for (message of messages(); track message.id) {
+        <div
+          class="msg"
+          [class.msg-user]="message.role === 'user'"
+          [class.msg-assistant]="message.role === 'assistant'"
+          [class.msg-notice]="message.tone === 'notice'"
+          [class.msg-error]="message.tone === 'error'"
+        >
+          <span class="sr-only">{{ message.role === 'user' ? 'Você:' : 'Assistente:' }}</span>
+          @if (message.tone === 'error') {
+            <i class="fas fa-exclamation-circle msg-icon" aria-hidden="true"></i>
+          }
+          <p class="msg-text">{{ message.text }}</p>
+          @if (message.sources.length) {
+            <p class="msg-sources">Fontes: {{ message.sources.join(', ') }}</p>
+          }
+        </div>
+      }
+
+      @if (pending()) {
+        <div class="msg msg-assistant typing" role="status">
+          <span class="sr-only">O assistente está digitando</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+      }
+    </div>
+
+    <form class="chat-form" (submit)="onSubmit($event)">
+      <label for="interview-chat-input" class="sr-only">Sua pergunta</label>
+      <textarea
+        #input
+        id="interview-chat-input"
+        rows="2"
+        [value]="draft()"
+        [attr.maxlength]="maxLength"
+        (input)="onInput($event)"
+        (keydown.enter)="onEnter($event)"
+        placeholder="Pergunte sobre experiência, projetos, formação..."
+        aria-describedby="interview-chat-hint interview-chat-counter"
+      ></textarea>
+      <div class="chat-form-footer">
+        <span id="interview-chat-hint" class="hint">Enter envia · Shift+Enter quebra linha</span>
+        <span id="interview-chat-counter" class="counter" [class.counter-limit]="draftLength() >= maxLength">{{ draftLength() }}/{{ maxLength }}</span>
+        <button type="submit" class="send-btn" [disabled]="!canSend()" aria-label="Enviar pergunta">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+    </form>
+  </section>
+}
+
+<button
+  #launcher
+  type="button"
+  class="chat-launcher"
+  [class.is-open]="isOpen()"
+  (click)="toggle()"
+  [attr.aria-expanded]="isOpen()"
+  aria-controls="interview-chat-panel"
+  [attr.aria-label]="isOpen() ? 'Fechar chat de entrevista' : 'Abrir chat: entreviste o Nicolas'"
+>
+  <i class="fas" [class.fa-comments]="!isOpen()" [class.fa-times]="isOpen()" aria-hidden="true"></i>
+  @if (!isOpen()) {
+    <span class="launcher-label">Me entreviste</span>
+  }
+</button>

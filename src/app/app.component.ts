@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { InterviewChatComponent } from './interview-chat/interview-chat.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, InterviewChatComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
