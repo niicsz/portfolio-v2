@@ -3,6 +3,10 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: jest.fn().mockReturnValue({ matches: true })
+    });
     await TestBed.configureTestingModule({
       imports: [AppComponent],
     }).compileComponents();
