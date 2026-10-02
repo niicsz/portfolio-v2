@@ -80,7 +80,8 @@ export class AppComponent implements OnInit {
   ];
 
   projetos: { id: string; url: string; icon: string; inDevelopment?: boolean }[] = [
-    { id: 'resilience-lab', url: 'https://github.com/niicsz/resilience-lab-hexagonal', icon: 'devicon-java-plain colored' },
+    { id: 'interview-api', url: 'https://github.com/niicsz/portfolio-interview-api', icon: 'devicon-java-plain colored' },
+    { id: 'resilience-lab', url:'https://github.com/niicsz/resilience-lab-hexagonal', icon: 'devicon-java-plain colored' },
     { id: 'binitech-pdv', url: 'https://github.com/niicsz/BiniTech-PDV', icon: 'devicon-java-plain colored' },
     { id: 'binitech-auth', url: 'https://github.com/niicsz/BiniTech-Auth', icon: 'devicon-java-plain colored' },
     { id: 'binitech-pdv-frontend', url: 'https://github.com/niicsz/BiniTech-PDV-frontend', icon: 'devicon-angular-plain colored' },

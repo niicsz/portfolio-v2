@@ -134,6 +134,11 @@ const PT: Translations = {
     inDevelopment: 'Em desenvolvimento',
     viewOnGitHub: 'Ver no GitHub',
     items: {
+      'interview-api': {
+        name: 'Portfolio Interview API',
+        description:
+          'API do assistente "Me entreviste" deste portfólio: RAG com embeddings locais e Claude, com várias camadas contra prompt injection. Java 25, Spring Boot, arquitetura hexagonal e API first.'
+      },
       'resilience-lab': {
         name: 'Resilience Lab',
         description:
@@ -269,6 +274,11 @@ const EN: Translations = {
     inDevelopment: 'In development',
     viewOnGitHub: 'View on GitHub',
     items: {
+      'interview-api': {
+        name: 'Portfolio Interview API',
+        description:
+          "API behind this portfolio's 'Interview me' assistant: RAG with local embeddings and Claude, with layered prompt injection defenses. Java 25, Spring Boot, hexagonal architecture and API first."
+      },
       'resilience-lab': {
         name: 'Resilience Lab',
         description:
