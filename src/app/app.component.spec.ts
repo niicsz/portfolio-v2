@@ -42,7 +42,8 @@ describe('AppComponent', () => {
     const toggle = compiled.querySelector<HTMLButtonElement>('.lang-toggle')!;
 
     expect(compiled.querySelector('#sobre h2')?.textContent).toContain('Sobre Mim');
-    expect(toggle.textContent?.trim()).toBe('EN');
+    expect(toggle.querySelector('img')?.getAttribute('src')).toBe('assets/flags/us.svg');
+    expect(toggle.getAttribute('aria-label')).toBe('Switch to English');
     expect(compiled.querySelector('#certificacoes .date')?.textContent).toContain('Emitido em Mai 2026');
 
     toggle.click();
@@ -51,7 +52,8 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('#sobre h2')?.textContent).toContain('About Me');
     expect(compiled.querySelector('#educacao .date')?.textContent).toContain('2026 - In progress');
     expect(compiled.querySelector('#certificacoes .date')?.textContent).toContain('Issued May 2026');
-    expect(toggle.textContent?.trim()).toBe('PT');
+    expect(toggle.querySelector('img')?.getAttribute('src')).toBe('assets/flags/br.svg');
+    expect(toggle.getAttribute('aria-label')).toBe('Mudar para português');
     expect(localStorage.getItem('lang')).toBe('en');
   });
 });

@@ -15,7 +15,7 @@ export interface Translations {
     toDarkMode: string;
     toggleMenu: string;
     switchLanguage: string;
-    otherLanguageCode: string;
+    otherLanguageFlag: string;
   };
   hero: {
     role: string;
@@ -96,7 +96,7 @@ const PT: Translations = {
     toDarkMode: 'Mudar para modo escuro',
     toggleMenu: 'Abrir ou fechar o menu',
     switchLanguage: 'Switch to English',
-    otherLanguageCode: 'EN'
+    otherLanguageFlag: 'assets/flags/us.svg'
   },
   hero: {
     role: 'Software Engineer at Bradesco',
@@ -231,7 +231,7 @@ const EN: Translations = {
     toDarkMode: 'Switch to dark mode',
     toggleMenu: 'Open or close the menu',
     switchLanguage: 'Mudar para português',
-    otherLanguageCode: 'PT'
+    otherLanguageFlag: 'assets/flags/br.svg'
   },
   hero: {
     role: 'Software Engineer at Bradesco',
