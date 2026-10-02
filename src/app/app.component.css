@@ -68,6 +68,13 @@
   background-color: var(--bg-secondary);
 }
 
+.lang-toggle {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
 .mobile-menu {
   position: absolute;
   top: 100%;

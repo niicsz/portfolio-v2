@@ -2,6 +2,16 @@ import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { InterviewChatComponent } from './interview-chat/interview-chat.component';
+import { LanguageService } from './i18n/language.service';
+
+interface EducationItem {
+  degree: 'mba' | 'technologist' | 'technical';
+  school: string | null;
+  logo: string;
+  alt: string;
+  start: [number, number?];
+  end?: [number, number];
+}
 
 @Component({
   selector: 'app-root',
@@ -11,6 +21,8 @@ import { InterviewChatComponent } from './interview-chat/interview-chat.componen
 })
 export class AppComponent implements OnInit {
   private cdr = inject(ChangeDetectorRef);
+  private language = inject(LanguageService);
+  readonly t = this.language.t;
 
   title = 'Nicolas Bezerra Bini - Portfolio';
   isDarkMode = true;
@@ -47,34 +59,40 @@ export class AppComponent implements OnInit {
   ];
 
   certifications = [
-    { title: 'GH-300 Github Copilot', issuer: 'GitHub', date: 'Mai 2026', icon: 'assets/github.png' },
-    { title: 'Bootcamp SRE Bronze', issuer: 'Bradesco', date: 'Mai 2026', icon: 'assets/sre-bronze.png' },
-    { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', date: 'Mar 2026', icon: 'assets/red_hat.png' },
-    { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', date: 'Mar 2026', icon: 'assets/red_hat.png' },
-    { title: 'Batismo de Java', issuer: 'Java10x', date: 'Jan 2026', icon: 'devicon-java-plain colored' },
-    { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', date: 'Jun 2025', icon: 'devicon-azure-plain colored' },
-    { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', date: 'Mai 2025', icon: 'fas fa-database' },
-    { title: 'Formação Boas Práticas em Java', issuer: 'Alura', date: 'Jun 2025', icon: 'devicon-java-plain colored' },
-    { title: 'Oracle Academy Java for AP Computer Science A', issuer: 'Oracle', date: 'Nov 2024', icon: 'devicon-java-plain colored' },
-    { title: 'Java (Basic) Certificate', issuer: 'HackerRank', date: 'Out 2024', icon: 'devicon-java-plain colored' },
-    { title: 'Introdução ao Packet Tracer', issuer: 'Cisco', date: 'Ago 2024', icon: 'fas fa-network-wired' },
-    { title: 'EF SET Certificate™ B2 Upper Intermediate English Level', issuer: 'EF SET', date: 'Ago 2024', icon: 'fas fa-language' },
-    { title: 'Scrum Agilidade em seu projeto', issuer: 'Alura', date: 'Jun 2024', icon: 'fas fa-tasks' },
-    { title: 'Java Programação Orientada a Objetos - 40 horas', issuer: 'Curso em Vídeo', date: 'Mai 2024', icon: 'devicon-java-plain colored' },
-    { title: 'Fundamentos de TI: Hardware e Software', issuer: 'Fundação Bradesco', date: 'Mai 2024', icon: 'fas fa-desktop' },
-    { title: 'Banco de Dados - Mysql - 40 Horas', issuer: 'Curso em Vídeo', date: 'Abr 2024', icon: 'devicon-mysql-plain colored' },
-    { title: 'Gestão de Infraestrutura de TI', issuer: 'FIAP', date: 'Out 2023', icon: 'fas fa-server' },
-    { title: 'Privacidade e Proteção de Dados (LGPD)', issuer: 'Senai São Paulo', date: 'Mar 2023', icon: 'fas fa-user-shield' }
+    { title: 'GH-300 Github Copilot', issuer: 'GitHub', year: 2026, month: 5, icon: 'assets/github.png' },
+    { title: 'Bootcamp SRE Bronze', issuer: 'Bradesco', year: 2026, month: 5, icon: 'assets/sre-bronze.png' },
+    { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', year: 2026, month: 3, icon: 'assets/red_hat.png' },
+    { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', year: 2026, month: 3, icon: 'assets/red_hat.png' },
+    { title: 'Batismo de Java', issuer: 'Java10x', year: 2026, month: 1, icon: 'devicon-java-plain colored' },
+    { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', year: 2025, month: 6, icon: 'devicon-azure-plain colored' },
+    { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', year: 2025, month: 5, icon: 'fas fa-database' },
+    { title: 'Formação Boas Práticas em Java', issuer: 'Alura', year: 2025, month: 6, icon: 'devicon-java-plain colored' },
+    { title: 'Oracle Academy Java for AP Computer Science A', issuer: 'Oracle', year: 2024, month: 11, icon: 'devicon-java-plain colored' },
+    { title: 'Java (Basic) Certificate', issuer: 'HackerRank', year: 2024, month: 10, icon: 'devicon-java-plain colored' },
+    { title: 'Introdução ao Packet Tracer', issuer: 'Cisco', year: 2024, month: 8, icon: 'fas fa-network-wired' },
+    { title: 'EF SET Certificate™ B2 Upper Intermediate English Level', issuer: 'EF SET', year: 2024, month: 8, icon: 'fas fa-language' },
+    { title: 'Scrum Agilidade em seu projeto', issuer: 'Alura', year: 2024, month: 6, icon: 'fas fa-tasks' },
+    { title: 'Java Programação Orientada a Objetos - 40 horas', issuer: 'Curso em Vídeo', year: 2024, month: 5, icon: 'devicon-java-plain colored' },
+    { title: 'Fundamentos de TI: Hardware e Software', issuer: 'Fundação Bradesco', year: 2024, month: 5, icon: 'fas fa-desktop' },
+    { title: 'Banco de Dados - Mysql - 40 Horas', issuer: 'Curso em Vídeo', year: 2024, month: 4, icon: 'devicon-mysql-plain colored' },
+    { title: 'Gestão de Infraestrutura de TI', issuer: 'FIAP', year: 2023, month: 10, icon: 'fas fa-server' },
+    { title: 'Privacidade e Proteção de Dados (LGPD)', issuer: 'Senai São Paulo', year: 2023, month: 3, icon: 'fas fa-user-shield' }
   ];
 
-  projetos: { name: string; description: string; url: string; icon: string; inDevelopment?: boolean }[] = [
-    { name: 'Resilience Lab', description: 'Laboratório de resiliência em arquitetura hexagonal com Java 25, Spring Boot 4 e Resilience4j: seis padrões medidos no Grafana com k6 e WireMock.', url: 'https://github.com/niicsz/resilience-lab-hexagonal', icon: 'devicon-java-plain colored' },
-    { name: 'BiniTech PDV', description: 'Sistema de Ponto de Venda (PDV) moderno e eficiente, focado na gestão de caixa.', url: 'https://github.com/niicsz/BiniTech-PDV', icon: 'devicon-java-plain colored' },
-    { name: 'BiniTech Auth', description: 'Serviço reutilizável de autenticação com arquitetura hexagonal, Java 21, Spring Boot, MongoDB, JWT e Argon2.', url: 'https://github.com/niicsz/BiniTech-Auth', icon: 'devicon-java-plain colored' },
-    { name: 'BiniTech PDV Frontend', description: 'SPA Angular 21 do BiniTech PDV SaaS multi-tenant, com fluxos de venda, gestão, relatórios e assinatura via Stripe.', url: 'https://github.com/niicsz/BiniTech-PDV-frontend', icon: 'devicon-angular-plain colored' },
-    { name: 'Logística CEP API', description: 'API REST para consulta de CEPs com abordagem API-first, resiliência, testes de integração e infraestrutura AWS via Terraform.', url: 'https://github.com/niicsz/cep-api', icon: 'devicon-java-plain colored' },
-    { name: 'URL Shortener', description: 'Encurtador de URLs rápido e escalável construído com Java e banco de dados relacional.', url: 'https://github.com/niicsz/url-shortener', icon: 'devicon-java-plain colored' },
-    { name: 'Calculadora de Aumento Percentual', description: 'Projeto de calculadora que aplica aumento percentual a um valor inicial.', url: 'https://github.com/niicsz/Calculadora-de-Aumento-Percentual', icon: 'devicon-html5-plain colored' }
+  projetos: { id: string; url: string; icon: string; inDevelopment?: boolean }[] = [
+    { id: 'resilience-lab', url: 'https://github.com/niicsz/resilience-lab-hexagonal', icon: 'devicon-java-plain colored' },
+    { id: 'binitech-pdv', url: 'https://github.com/niicsz/BiniTech-PDV', icon: 'devicon-java-plain colored' },
+    { id: 'binitech-auth', url: 'https://github.com/niicsz/BiniTech-Auth', icon: 'devicon-java-plain colored' },
+    { id: 'binitech-pdv-frontend', url: 'https://github.com/niicsz/BiniTech-PDV-frontend', icon: 'devicon-angular-plain colored' },
+    { id: 'cep-api', url: 'https://github.com/niicsz/cep-api', icon: 'devicon-java-plain colored' },
+    { id: 'url-shortener', url: 'https://github.com/niicsz/url-shortener', icon: 'devicon-java-plain colored' },
+    { id: 'percentage-calculator', url: 'https://github.com/niicsz/Calculadora-de-Aumento-Percentual', icon: 'devicon-html5-plain colored' }
+  ];
+
+  education: EducationItem[] = [
+    { degree: 'mba', school: null, logo: 'assets/logo-usp.svg', alt: 'USP Logo', start: [2026] },
+    { degree: 'technologist', school: 'Universidade São Judas Tadeu', logo: 'assets/logo-usjt.svg', alt: 'USJT Logo', start: [2024, 2], end: [2026, 6] },
+    { degree: 'technical', school: 'Fundação Instituto Tecnológico de Osasco', logo: 'assets/FundaçãoInstitutoTecnológicodeOsasco.png', alt: 'FITO Logo', start: [2020, 1], end: [2023, 12] }
   ];
 
   ngOnInit() {
@@ -92,6 +110,21 @@ export class AppComponent implements OnInit {
     localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
     this.updateTheme();
     this.cdr.markForCheck();
+  }
+
+  toggleLanguage() {
+    this.language.toggle();
+  }
+
+  monthYear(year: number, month: number): string {
+    return this.language.formatMonthYear(year, month);
+  }
+
+  educationPeriod(item: EducationItem): string {
+    const [startYear, startMonth] = item.start;
+    const start = startMonth ? this.monthYear(startYear, startMonth) : String(startYear);
+    const end = item.end ? this.monthYear(item.end[0], item.end[1]) : this.t().education.inProgress;
+    return `${start} - ${end}`;
   }
 
   toggleMenu() {

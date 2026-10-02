@@ -16,6 +16,7 @@ import {
   MAX_QUESTION_LENGTH,
   MIN_QUESTION_LENGTH
 } from './interview.service';
+import { LanguageService } from '../i18n/language.service';
 
 export interface ChatMessage {
   id: number;
@@ -44,13 +45,10 @@ export class InterviewChatComponent {
   private log = viewChild<ElementRef<HTMLElement>>('log');
   private panel = viewChild<ElementRef<HTMLElement>>('panel');
 
+  private language = inject(LanguageService);
+  readonly t = this.language.t;
   readonly maxLength = MAX_QUESTION_LENGTH;
-  readonly suggestions = [
-    'Quais tecnologias ele usou no Btoken?',
-    'Quais projetos pessoais ele tem?',
-    'Onde ele estuda?',
-    'Quais certificações ele tem?'
-  ];
+  readonly suggestions = computed(() => this.t().chat.suggestions);
 
   readonly isOpen = signal(false);
   readonly draft = signal('');
@@ -89,6 +87,10 @@ export class InterviewChatComponent {
     }
     this.isOpen.set(false);
     afterNextRender(() => this.launcher()?.nativeElement.focus(), { injector: this.injector });
+  }
+
+  toggleLanguage(): void {
+    this.language.toggle();
   }
 
   onEscape(): void {
@@ -141,12 +143,12 @@ export class InterviewChatComponent {
     if (result.kind === 'error') {
       return { role: 'assistant', text: result.text, sources: [], tone: 'error' };
     }
-    return {
-      role: 'assistant',
-      text: result.text,
-      sources: result.status === 'ANSWERED' ? result.sources : [],
-      tone: result.status === 'ANSWERED' ? 'default' : 'notice'
-    };
+    if (result.status === 'ANSWERED') {
+      return { role: 'assistant', text: result.text, sources: result.sources, tone: 'default' };
+    }
+    const chat = this.t().chat;
+    const text = result.status === 'REJECTED' ? chat.rejected : chat.outOfScope;
+    return { role: 'assistant', text, sources: [], tone: 'notice' };
   }
 
   private addMessage(message: Omit<ChatMessage, 'id'>): void {

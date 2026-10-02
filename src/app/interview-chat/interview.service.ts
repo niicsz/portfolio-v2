@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { INTERVIEW_API_BASE_URL } from './interview-api.config';
+import { LanguageService } from '../i18n/language.service';
 
 export type InterviewStatus = 'ANSWERED' | 'OUT_OF_SCOPE' | 'REJECTED';
 
@@ -18,17 +19,10 @@ export type InterviewResult =
 export const MIN_QUESTION_LENGTH = 3;
 export const MAX_QUESTION_LENGTH = 500;
 
-const FALLBACK_MESSAGES = {
-  network: 'Não foi possível conectar ao assistente agora. Verifique sua conexão e tente novamente em instantes.',
-  invalid: `Não consegui entender a pergunta. Ela precisa ter entre ${MIN_QUESTION_LENGTH} e ${MAX_QUESTION_LENGTH} caracteres.`,
-  unavailable: 'O assistente está temporariamente indisponível. Tente novamente mais tarde.',
-  generic: 'Algo deu errado ao buscar a resposta. Tente novamente em instantes.',
-  empty: 'Não recebi uma resposta válida do assistente. Tente novamente.'
-};
-
 @Injectable({ providedIn: 'root' })
 export class InterviewService {
   private http = inject(HttpClient);
+  private language = inject(LanguageService);
   private baseUrl = inject(INTERVIEW_API_BASE_URL).replace(/\/+$/, '');
 
   ask(question: string): Observable<InterviewResult> {
@@ -43,7 +37,7 @@ export class InterviewService {
   private toAnswer(response: InterviewApiResponse | null): InterviewResult {
     const text = typeof response?.answer === 'string' ? response.answer.trim() : '';
     if (!response || !text) {
-      return { kind: 'error', httpStatus: 200, text: FALLBACK_MESSAGES.empty };
+      return { kind: 'error', httpStatus: 200, text: this.messages().empty };
     }
     const status: InterviewStatus = ['ANSWERED', 'OUT_OF_SCOPE', 'REJECTED'].includes(response.status)
       ? response.status
@@ -56,15 +50,16 @@ export class InterviewService {
   }
 
   private toError(error: unknown): InterviewResult {
+    const messages = this.messages();
     if (!(error instanceof HttpErrorResponse)) {
-      return { kind: 'error', httpStatus: 0, text: FALLBACK_MESSAGES.generic };
+      return { kind: 'error', httpStatus: 0, text: messages.generic };
     }
-    const serverMessage = this.extractMessage(error.error);
+    const serverMessage = this.language.language() === 'pt' ? this.extractMessage(error.error) : undefined;
     switch (error.status) {
       case 0:
-        return { kind: 'error', httpStatus: 0, text: FALLBACK_MESSAGES.network };
+        return { kind: 'error', httpStatus: 0, text: messages.network };
       case 400:
-        return { kind: 'error', httpStatus: 400, text: serverMessage ?? FALLBACK_MESSAGES.invalid };
+        return { kind: 'error', httpStatus: 400, text: serverMessage ?? messages.invalid };
       case 429: {
         const retryAfterSeconds = this.parseRetryAfter(error.headers?.get('Retry-After'));
         return {
@@ -75,9 +70,9 @@ export class InterviewService {
         };
       }
       case 503:
-        return { kind: 'error', httpStatus: 503, text: serverMessage ?? FALLBACK_MESSAGES.unavailable };
+        return { kind: 'error', httpStatus: 503, text: serverMessage ?? messages.unavailable };
       default:
-        return { kind: 'error', httpStatus: error.status, text: serverMessage ?? FALLBACK_MESSAGES.generic };
+        return { kind: 'error', httpStatus: error.status, text: serverMessage ?? messages.generic };
     }
   }
 
@@ -100,10 +95,11 @@ export class InterviewService {
   }
 
   private rateLimitMessage(retryAfterSeconds?: number): string {
-    if (retryAfterSeconds) {
-      const unit = retryAfterSeconds === 1 ? 'segundo' : 'segundos';
-      return `Muitas perguntas em pouco tempo. Tente novamente em ${retryAfterSeconds} ${unit}.`;
-    }
-    return 'Muitas perguntas em pouco tempo. Aguarde um pouco e tente novamente.';
+    const messages = this.messages();
+    return retryAfterSeconds ? messages.rateLimitIn(retryAfterSeconds) : messages.rateLimit;
+  }
+
+  private messages() {
+    return this.language.t().chat.errors;
   }
 }

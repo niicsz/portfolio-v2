@@ -11,6 +11,7 @@ describe('InterviewChatComponent', () => {
   let ask: jest.Mock;
 
   beforeEach(async () => {
+    localStorage.clear();
     responses = new Subject<InterviewResult>();
     ask = jest.fn(() => responses.asObservable());
     await TestBed.configureTestingModule({
@@ -24,7 +25,10 @@ describe('InterviewChatComponent', () => {
     await fixture.whenStable();
   });
 
-  afterEach(() => host.remove());
+  afterEach(() => {
+    host.remove();
+    localStorage.clear();
+  });
 
   async function openPanel(): Promise<void> {
     host.querySelector<HTMLButtonElement>('.chat-launcher')!.click();
@@ -105,7 +109,7 @@ describe('InterviewChatComponent', () => {
     await openPanel();
     host.querySelector<HTMLButtonElement>('.suggestion')!.click();
     await fixture.whenStable();
-    expect(ask).toHaveBeenCalledWith(component.suggestions[0]);
+    expect(ask).toHaveBeenCalledWith(component.suggestions()[0]);
 
     component.send('Outra pergunta');
     expect(ask).toHaveBeenCalledTimes(1);
@@ -120,5 +124,24 @@ describe('InterviewChatComponent', () => {
     expect(error).not.toBeNull();
     expect(error!.textContent).toContain('Indisponível');
     expect(error!.querySelector('.msg-sources')).toBeNull();
+  });
+
+  it('switches the widget to English and localizes out-of-scope replies', async () => {
+    await openPanel();
+    host.querySelector<HTMLButtonElement>('.lang-btn')!.click();
+    await fixture.whenStable();
+
+    expect(host.querySelector('#interview-chat-title')!.textContent).toContain('Interview Nicolas');
+    expect(host.querySelector('.suggestion')!.textContent).toContain('What technologies did he use on Btoken?');
+
+    await type('What is the capital of France?');
+    sendButton().click();
+    responses.next({ kind: 'answer', status: 'OUT_OF_SCOPE', text: 'Só consigo responder... / I can only...', sources: [] });
+    await fixture.whenStable();
+
+    const reply = host.querySelectorAll('.msg-notice .msg-text');
+    expect(reply[reply.length - 1].textContent).toBe(
+      "I can only answer questions about Nicolas's career: experience, projects, education and tech stack."
+    );
   });
 });
