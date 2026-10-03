@@ -13,6 +13,14 @@ interface EducationItem {
   end?: [number, number];
 }
 
+interface Credential {
+  title: string;
+  issuer: string;
+  year: number;
+  month: number;
+  icon: string;
+}
+
 @Component({
   selector: 'app-root',
   imports: [CommonModule, RouterOutlet, InterviewChatComponent],
@@ -58,19 +66,22 @@ export class AppComponent implements OnInit {
     { name: 'k6', icon: 'devicon-k6-original colored' }
   ];
 
-  certifications = [
+  certifications: Credential[] = [
     { title: 'GH-300 Github Copilot', issuer: 'GitHub', year: 2026, month: 5, icon: 'assets/github.png' },
+    { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', year: 2025, month: 6, icon: 'devicon-azure-plain colored' },
+    { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', year: 2025, month: 5, icon: 'fas fa-database' },
+    { title: 'Java (Basic) Certificate', issuer: 'HackerRank', year: 2024, month: 10, icon: 'devicon-java-plain colored' },
+    { title: 'EF SET Certificate™ B2 Upper Intermediate English Level', issuer: 'EF SET', year: 2024, month: 8, icon: 'fas fa-language' }
+  ];
+
+  courses: Credential[] = [
     { title: 'Bootcamp SRE Bronze', issuer: 'Bradesco', year: 2026, month: 5, icon: 'assets/sre-bronze.png' },
     { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', year: 2026, month: 3, icon: 'assets/red_hat.png' },
     { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', year: 2026, month: 3, icon: 'assets/red_hat.png' },
     { title: 'Batismo de Java', issuer: 'Java10x', year: 2026, month: 1, icon: 'devicon-java-plain colored' },
-    { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', year: 2025, month: 6, icon: 'devicon-azure-plain colored' },
-    { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', year: 2025, month: 5, icon: 'fas fa-database' },
     { title: 'Formação Boas Práticas em Java', issuer: 'Alura', year: 2025, month: 6, icon: 'devicon-java-plain colored' },
     { title: 'Oracle Academy Java for AP Computer Science A', issuer: 'Oracle', year: 2024, month: 11, icon: 'devicon-java-plain colored' },
-    { title: 'Java (Basic) Certificate', issuer: 'HackerRank', year: 2024, month: 10, icon: 'devicon-java-plain colored' },
     { title: 'Introdução ao Packet Tracer', issuer: 'Cisco', year: 2024, month: 8, icon: 'fas fa-network-wired' },
-    { title: 'EF SET Certificate™ B2 Upper Intermediate English Level', issuer: 'EF SET', year: 2024, month: 8, icon: 'fas fa-language' },
     { title: 'Scrum Agilidade em seu projeto', issuer: 'Alura', year: 2024, month: 6, icon: 'fas fa-tasks' },
     { title: 'Java Programação Orientada a Objetos - 40 horas', issuer: 'Curso em Vídeo', year: 2024, month: 5, icon: 'devicon-java-plain colored' },
     { title: 'Fundamentos de TI: Hardware e Software', issuer: 'Fundação Bradesco', year: 2024, month: 5, icon: 'fas fa-desktop' },
