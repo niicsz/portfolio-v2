@@ -45,6 +45,7 @@ describe('AppComponent', () => {
     expect(toggle.querySelector('img')?.getAttribute('src')).toBe('assets/flags/us.svg');
     expect(toggle.getAttribute('aria-label')).toBe('Switch to English');
     expect(compiled.querySelector('#certificacoes .date')?.textContent).toContain('Emitido em Mai 2026');
+    expect(compiled.querySelector('#cursos .date')?.textContent).toContain('Concluído em Mai 2026');
 
     toggle.click();
     fixture.detectChanges();
@@ -52,6 +53,7 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('#sobre h2')?.textContent).toContain('About Me');
     expect(compiled.querySelector('#educacao .date')?.textContent).toContain('2026 - In progress');
     expect(compiled.querySelector('#certificacoes .date')?.textContent).toContain('Issued May 2026');
+    expect(compiled.querySelector('#cursos .date')?.textContent).toContain('Completed May 2026');
     expect(toggle.querySelector('img')?.getAttribute('src')).toBe('assets/flags/br.svg');
     expect(toggle.getAttribute('aria-label')).toBe('Mudar para português');
     expect(localStorage.getItem('lang')).toBe('en');

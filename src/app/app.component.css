@@ -367,6 +367,16 @@
   display: block;
 }
 
+.experience-item + .experience-item {
+  margin-top: 1.25rem;
+}
+
+.experience-item h5 {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
 .certification-card {
   display: flex;
   align-items: center;

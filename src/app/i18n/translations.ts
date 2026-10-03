@@ -9,6 +9,7 @@ export interface Translations {
     projects: string;
     skills: string;
     certifications: string;
+    courses: string;
   };
   header: {
     toLightMode: string;
@@ -28,7 +29,7 @@ export interface Translations {
   experience: {
     title: string;
     period: string;
-    paragraphs: string[];
+    items: { title: string; description: string }[];
   };
   education: {
     title: string;
@@ -48,6 +49,10 @@ export interface Translations {
   certifications: {
     title: string;
     issuedOn: string;
+  };
+  courses: {
+    title: string;
+    completedOn: string;
   };
   chat: {
     title: string;
@@ -89,7 +94,8 @@ const PT: Translations = {
     education: 'Educação',
     projects: 'Projetos',
     skills: 'Habilidades',
-    certifications: 'Certificações'
+    certifications: 'Certificações',
+    courses: 'Cursos'
   },
   header: {
     toLightMode: 'Mudar para modo claro',
@@ -113,10 +119,22 @@ const PT: Translations = {
   experience: {
     title: 'Experiência Profissional',
     period: 'Fev 2025 - O momento · Híbrido, Osasco, SP',
-    paragraphs: [
-      'Atuei no Btoken – Token Corporativo do Bradesco, contribuindo para o desenvolvimento e manutenção de um sistema de geração de tokens OTP usado em vários canais bancários. Construí microsserviços com Spring Boot, desenvolvi APIs REST (documentadas com Swagger/OpenAPI) e implementei testes unitários com JUnit 5 e Mockito. Utilizei Java, Kafka, Azure, SQL Server e Databricks para persistência de dados, processamento e relatórios analíticos.',
-      'Posteriormente, integrei a Squad DocMatch (Análise de Documentos), desenvolvendo integrações com a API da Serasa para validação e autenticação de documentos. Trabalhei com MongoDB e SQL Server para armazenamento e correlação de dados, garantindo segurança e escalabilidade nos processos de onboarding.',
-      'Atualmente, faço parte da Squad Bex for Dev, em um contexto de Platform Engineering utilizando o Backstage (Internal Developer Platform). Apoio iniciativas para melhorar a experiência do desenvolvedor (DX), mantendo serviços da plataforma interna. Meu dia a dia inclui uso de Linux (WSL, RHEL), containers com Podman e Docker, e criação de Shell scripts para automação de tarefas.'
+    items: [
+      {
+        title: 'Btoken — Token Corporativo Bradesco',
+        description:
+          'Contribuí para o desenvolvimento e manutenção de um sistema de geração de OTP usado em múltiplos canais bancários, processando mais de 2 milhões de requisições por dia. Construí microsserviços com Spring Boot e REST APIs documentadas com Swagger/OpenAPI. Implementei testes com JUnit 5 e Mockito, alcançando 95% de cobertura no SonarQube. Usei Apache Kafka para mensageria, Azure para nuvem, SQL Server para persistência e Databricks para análise.'
+      },
+      {
+        title: 'DocMatch — Análise de Documentos',
+        description:
+          'Desenvolvi integrações com a API da Serasa para validação e autenticação de documentos em onboarding e verificação de identidade, reduzindo o tempo médio de verificação em cerca de 30%. Trabalhei com MongoDB e SQL Server para armazenamento e correlação de dados, suportando mais de 500 mil validações mensais. Otimizei consultas, reduzindo a latência de 800ms para 250ms.'
+      },
+      {
+        title: 'Bex for Dev — Platform Engineering',
+        description:
+          'Atuo em Platform Engineering com Backstage (Internal Developer Platform), apoiando iniciativas de experiência do desenvolvedor que impactam mais de 500 devs internos. Utilizo Linux via WSL (RHEL), containers com Podman e Docker, e scripts Shell para automação. Dou suporte ao piloto de adoção do Linux Red Hat no banco, permitindo que devs escolham entre Linux e Windows no onboarding. Trabalhei na oferta de external images, viabilizando o uso de imagens do Docker Hub livres de CVEs e reduzindo o provisionamento em cerca de 60%. Habilitei o Copilot CLI nas distros Red Hat via WSL e criei o "Bex Dev Local", script que automatiza setup, build e start do projeto, reduzindo a configuração de ambiente de horas para cerca de 10 minutos.'
+      }
     ]
   },
   education: {
@@ -180,6 +198,10 @@ const PT: Translations = {
     title: 'Certificações',
     issuedOn: 'Emitido em'
   },
+  courses: {
+    title: 'Cursos',
+    completedOn: 'Concluído em'
+  },
   chat: {
     title: 'Entreviste o Nicolas',
     subtitle: 'Respostas geradas por IA com base no currículo',
@@ -229,7 +251,8 @@ const EN: Translations = {
     education: 'Education',
     projects: 'Projects',
     skills: 'Skills',
-    certifications: 'Certifications'
+    certifications: 'Certifications',
+    courses: 'Courses'
   },
   header: {
     toLightMode: 'Switch to light mode',
@@ -253,10 +276,22 @@ const EN: Translations = {
   experience: {
     title: 'Professional Experience',
     period: 'Feb 2025 - Present · Hybrid, Osasco, SP',
-    paragraphs: [
-      "I worked on Btoken – Bradesco's Corporate Token, contributing to the development and maintenance of an OTP token generation system used across several banking channels. I built microservices with Spring Boot, developed REST APIs (documented with Swagger/OpenAPI) and wrote unit tests with JUnit 5 and Mockito. I used Java, Kafka, Azure, SQL Server and Databricks for data persistence, processing and analytical reports.",
-      'Later, I joined the DocMatch squad (Document Analysis), building integrations with the Serasa API for document validation and authentication. I worked with MongoDB and SQL Server for data storage and correlation, ensuring security and scalability in onboarding processes.',
-      "I'm currently part of the Bex for Dev squad, in a Platform Engineering context using Backstage (Internal Developer Platform). I support initiatives to improve developer experience (DX) and maintain internal platform services. My day-to-day includes Linux (WSL, RHEL), containers with Podman and Docker, and Shell scripts for task automation."
+    items: [
+      {
+        title: 'Btoken — Bradesco Corporate Token',
+        description:
+          'Contributed to the development and maintenance of an OTP generation system used across multiple banking channels, handling over 2 million requests per day. Built microservices with Spring Boot and REST APIs documented with Swagger/OpenAPI. Wrote tests with JUnit 5 and Mockito, reaching 95% coverage on SonarQube. Used Apache Kafka for messaging, Azure for cloud, SQL Server for persistence and Databricks for analytics.'
+      },
+      {
+        title: 'DocMatch — Document Analysis',
+        description:
+          'Built integrations with the Serasa API for document validation and authentication in onboarding and identity verification, cutting average verification time by about 30%. Worked with MongoDB and SQL Server for data storage and correlation, supporting over 500,000 validations per month. Optimized queries, reducing latency from 800ms to 250ms.'
+      },
+      {
+        title: 'Bex for Dev — Platform Engineering',
+        description:
+          'I work in Platform Engineering with Backstage (Internal Developer Platform), supporting developer experience initiatives that reach over 500 internal developers. I use Linux via WSL (RHEL), containers with Podman and Docker, and Shell scripts for automation. I support the bank\'s Red Hat Linux adoption pilot, letting developers choose between Linux and Windows during onboarding. I worked on the external images offering, enabling CVE-free Docker Hub images and cutting provisioning time by about 60%. I enabled Copilot CLI on Red Hat distros via WSL and created "Bex Dev Local", a script that automates project setup, build and start, reducing environment setup from hours to about 10 minutes.'
+      }
     ]
   },
   education: {
@@ -319,6 +354,10 @@ const EN: Translations = {
   certifications: {
     title: 'Certifications',
     issuedOn: 'Issued'
+  },
+  courses: {
+    title: 'Courses',
+    completedOn: 'Completed'
   },
   chat: {
     title: 'Interview Nicolas',

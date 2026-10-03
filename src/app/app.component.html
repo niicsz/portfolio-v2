@@ -11,6 +11,7 @@
         <li><a href="#projetos" (click)="closeMenu()">{{ t().nav.projects }}</a></li>
         <li><a href="#habilidades" (click)="closeMenu()">{{ t().nav.skills }}</a></li>
         <li><a href="#certificacoes" (click)="closeMenu()">{{ t().nav.certifications }}</a></li>
+        <li><a href="#cursos" (click)="closeMenu()">{{ t().nav.courses }}</a></li>
       </ul>
     </nav>
     <div class="header-actions">
@@ -59,8 +60,11 @@
           </div>
         </div>
         <span class="date">{{ t().experience.period }}</span>
-        @for (paragraph of t().experience.paragraphs; track $index) {
-          <p>{{ paragraph }}</p>
+        @for (item of t().experience.items; track $index) {
+          <div class="experience-item">
+            <h5>{{ item.title }}</h5>
+            <p>{{ item.description }}</p>
+          </div>
         }
       </div>
     </section>
@@ -135,6 +139,24 @@
             <h3>{{ cert.title }}</h3>
             <h4>{{ cert.issuer }}</h4>
             <span class="date">{{ t().certifications.issuedOn }} {{ monthYear(cert.year, cert.month) }}</span>
+          </div>
+        </div>
+      }
+    </section>
+
+    <section id="cursos">
+      <h2 class="section-title">{{ t().courses.title }}</h2>
+      @for (course of courses; track course.title) {
+        <div class="certification-card">
+          @if (course.icon.includes('assets/')) {
+            <img [src]="course.icon" [alt]="course.title" class="cert-icon-img">
+          } @else {
+            <i [class]="course.icon" class="cert-icon" [style.color]="course.icon.includes('fas') ? 'var(--text-primary)' : ''"></i>
+          }
+          <div class="cert-info">
+            <h3>{{ course.title }}</h3>
+            <h4>{{ course.issuer }}</h4>
+            <span class="date">{{ t().courses.completedOn }} {{ monthYear(course.year, course.month) }}</span>
           </div>
         </div>
       }
