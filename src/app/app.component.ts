@@ -67,6 +67,8 @@ export class AppComponent implements OnInit {
   ];
 
   certifications: Credential[] = [
+    { title: 'Angular (Intermediate) Certificate', issuer: 'HackerRank', year: 2026, month: 10, icon: 'devicon-angular-plain colored' },
+    { title: 'Software Engineer Certificate', issuer: 'HackerRank', year: 2026, month: 10, icon: 'fas fa-code' },
     { title: 'GH-300 Github Copilot', issuer: 'GitHub', year: 2026, month: 5, icon: 'assets/github.png' },
     { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', year: 2025, month: 6, icon: 'devicon-azure-plain colored' },
     { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', year: 2025, month: 5, icon: 'fas fa-database' },
@@ -75,6 +77,7 @@ export class AppComponent implements OnInit {
   ];
 
   courses: Credential[] = [
+    { title: 'Trilha Arquitetura Java', issuer: "The Developer's Conference", year: 2026, month: 9, icon: 'devicon-java-plain colored' },
     { title: 'Bootcamp SRE Bronze', issuer: 'Bradesco', year: 2026, month: 5, icon: 'assets/sre-bronze.png' },
     { title: 'Red Hat Openshift Development I : Introduction to Containers with Podman', issuer: 'Red Hat', year: 2026, month: 3, icon: 'assets/red_hat.png' },
     { title: 'Red Hat Application Development I: Programming in Java EE', issuer: 'Red Hat', year: 2026, month: 3, icon: 'assets/red_hat.png' },
