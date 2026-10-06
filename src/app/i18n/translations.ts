@@ -21,6 +21,7 @@ export interface Translations {
   hero: {
     role: string;
     resume: string;
+    resumeFile: string;
   };
   about: {
     title: string;
@@ -106,7 +107,8 @@ const PT: Translations = {
   },
   hero: {
     role: 'Software Engineer at Bradesco',
-    resume: 'Ver Currículo'
+    resume: 'Ver Currículo',
+    resumeFile: 'assets/Nicolas_Bini_CV.pdf'
   },
   about: {
     title: 'Sobre Mim',
@@ -263,7 +265,8 @@ const EN: Translations = {
   },
   hero: {
     role: 'Software Engineer at Bradesco',
-    resume: 'View Resume'
+    resume: 'View Resume',
+    resumeFile: 'assets/Nicolas_Bini_Resume_EN.pdf'
   },
   about: {
     title: 'About Me',
