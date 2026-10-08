@@ -32,12 +32,15 @@
   <div class="container">
 
     <section class="hero">
+      <app-particles></app-particles>
+      <div class="hero-content">
       <h1>Nicolas Bezerra Bini</h1>
       <h2>{{ t().hero.role }}</h2>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/nicolas-bezerra-bini/" target="_blank"><i class="devicon-linkedin-plain colored"></i> LinkedIn</a>
         <a href="https://github.com/niicsz" target="_blank"><i class="devicon-github-original" [style.color]="isDarkMode ? 'white' : 'black'"></i> GitHub</a>
         <a [href]="t().hero.resumeFile" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf" [style.color]="isDarkMode ? 'white' : 'black'"></i> {{ t().hero.resume }}</a>
+      </div>
       </div>
     </section>
 

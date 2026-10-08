@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { InterviewChatComponent } from './interview-chat/interview-chat.component';
+import { ParticlesComponent } from './particles/particles.component';
 import { LanguageService } from './i18n/language.service';
 
 interface EducationItem {
@@ -23,7 +24,7 @@ interface Credential {
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, InterviewChatComponent],
+  imports: [CommonModule, RouterOutlet, InterviewChatComponent, ParticlesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
