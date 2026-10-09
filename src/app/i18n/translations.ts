@@ -113,9 +113,10 @@ const PT: Translations = {
   about: {
     title: 'Sobre Mim',
     paragraphs: [
-      'Sou Desenvolvedor de Software especializado em Java e Spring Boot, atuando no Bradesco na construção e manutenção de soluções de alta performance e escala. Tenho experiência com Nest.js, Angular, Docker, SQL Server e MongoDB, além de certificação Azure, o que me permite trabalhar com arquiteturas modernas, integrações robustas e ambientes em nuvem.',
-      'Minha trajetória combina desenvolvimento Back-End, conhecimento em sistemas distribuídos e participação ativa em squads ágeis, sempre com foco em entregar software confiável, seguro e alinhado às necessidades do negócio. Sou movido por desafios técnicos, melhoria contínua e boas práticas de engenharia.',
-      'Sou tecnólogo em Análise e Desenvolvimento de Sistemas pela Universidade São Judas Tadeu e atualmente curso MBA em Engenharia de Software na Universidade de São Paulo (USP), buscando aprofundar minhas habilidades e contribuir com soluções que gerem impacto real para as empresas e para os usuários.'
+      'Sou Desenvolvedor de Software com foco em Java e Spring Boot. No Bradesco, atuo na construção e manutenção de soluções de alta performance e escala. Trabalho com arquitetura hexagonal, sistemas distribuídos e padrões de resiliência como circuit breaker, retry e bulkhead, sempre com foco em software confiável, seguro e alinhado ao negócio.',
+      'Também tenho experiência com Angular, Nest.js, Docker, OpenShift, PostgreSQL, Redis, SQL Server e MongoDB, além das certificações Microsoft Azure Fundamentals (AZ-900) e GitHub Copilot (GH-300). Nos últimos projetos, venho aplicando IA generativa em produção: APIs com RAG e Claude, com proteção contra prompt injection e revisão automatizada de dados.',
+      'Fora do trabalho, desenvolvo projetos próprios, como um SaaS multi-tenant de PDV, um laboratório de resiliência com métricas no Grafana e a reescrita do EloSys, uma plataforma de transparência com dados públicos de candidatos (Java 25, Spring Boot 4, Postgres com ~47 milhões de registros e Angular).',
+      'Sou movido por desafios técnicos, melhoria contínua e boas práticas de engenharia. Sou tecnólogo em Análise e Desenvolvimento de Sistemas pela Universidade São Judas Tadeu e curso MBA em Engenharia de Software na Universidade de São Paulo (USP).'
     ]
   },
   experience: {
@@ -271,9 +272,10 @@ const EN: Translations = {
   about: {
     title: 'About Me',
     paragraphs: [
-      "I'm a Software Developer specialized in Java and Spring Boot, working at Bradesco building and maintaining high-performance, large-scale solutions. I have experience with Nest.js, Angular, Docker, SQL Server and MongoDB, plus an Azure certification, which lets me work with modern architectures, robust integrations and cloud environments.",
-      "My path combines back-end development, knowledge of distributed systems and active participation in agile squads, always focused on delivering reliable, secure software aligned with business needs. I'm driven by technical challenges, continuous improvement and good engineering practices.",
-      "I hold a technologist degree in Systems Analysis and Development from Universidade São Judas Tadeu and I'm currently pursuing an MBA in Software Engineering at the University of São Paulo (USP), aiming to deepen my skills and deliver solutions with real impact for companies and users."
+      'I am a Software Engineer focused on Java and Spring Boot. At Bradesco, I work on building and maintaining high-performance, scalable applications. I work with hexagonal architecture, distributed systems and resilience patterns such as circuit breaker, retry and bulkhead, always focused on reliable, secure and business-driven software.',
+      'I also have hands-on experience with Angular, Nest.js, Docker, OpenShift, PostgreSQL, Redis, SQL Server and MongoDB, as well as Microsoft Azure Fundamentals (AZ-900) and GitHub Copilot (GH-300) certifications. In recent projects, I have been applying generative AI in production: APIs with RAG and Claude, with prompt injection protection and automated data review.',
+      'I also build my own projects, such as a multi-tenant POS SaaS, a resilience lab with Grafana metrics, and a rewrite of EloSys, a transparency platform built on public data about Brazilian political candidates (Java 25, Spring Boot 4, Postgres with ~47 million records, and Angular).',
+      'I am driven by technical challenges, continuous improvement and engineering best practices. I hold a technologist degree in Systems Analysis and Development from Universidade São Judas Tadeu and I am pursuing an MBA in Software Engineering at the University of São Paulo (USP).'
     ]
   },
   experience: {

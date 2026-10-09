@@ -68,9 +68,10 @@ export class AppComponent implements OnInit {
   ];
 
   certifications: Credential[] = [
+    { title: 'GH-900 Microsoft Certified: GitHub Foundations', issuer: 'Microsoft', year: 2026, month: 10, icon: 'assets/github-foundations.svg' },
     { title: 'Angular (Intermediate) Certificate', issuer: 'HackerRank', year: 2026, month: 10, icon: 'devicon-angular-plain colored' },
     { title: 'Software Engineer Certificate', issuer: 'HackerRank', year: 2026, month: 10, icon: 'fas fa-code' },
-    { title: 'GH-300 Github Copilot', issuer: 'GitHub', year: 2026, month: 5, icon: 'assets/github.png' },
+    { title: 'GH-300 Github Copilot', issuer: 'Microsoft', year: 2026, month: 5, icon: 'assets/github.png' },
     { title: 'AZ-900 Microsoft Certified: Azure Fundamentals', issuer: 'Microsoft', year: 2025, month: 6, icon: 'devicon-azure-plain colored' },
     { title: 'Databricks Fundamentals Accreditation', issuer: 'Databricks', year: 2025, month: 5, icon: 'fas fa-database' },
     { title: 'Java (Basic) Certificate', issuer: 'HackerRank', year: 2024, month: 10, icon: 'devicon-java-plain colored' },
