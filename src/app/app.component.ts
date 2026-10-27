@@ -102,7 +102,8 @@ export class AppComponent implements OnInit {
     { id: 'binitech-auth', url: 'https://github.com/niicsz/BiniTech-Auth', icon: 'devicon-java-plain colored' },
     { id: 'binitech-pdv-frontend', url: 'https://github.com/niicsz/BiniTech-PDV-frontend', icon: 'devicon-angular-plain colored' },
     { id: 'cep-api', url: 'https://github.com/niicsz/cep-api', icon: 'devicon-java-plain colored' },
-    { id: 'url-shortener', url: 'https://github.com/niicsz/url-shortener', icon: 'devicon-java-plain colored' },
+    { id: 'url-shortener-backend', url: 'https://github.com/niicsz/url-shortener-backend', icon: 'devicon-java-plain colored' },
+    { id: 'url-shortener-frontend', url: 'https://github.com/niicsz/url-shortener-frontend', icon: 'devicon-angular-plain colored' },
     { id: 'percentage-calculator', url: 'https://github.com/niicsz/Calculadora-de-Aumento-Percentual', icon: 'devicon-html5-plain colored' }
   ];
 

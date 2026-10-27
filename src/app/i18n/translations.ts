@@ -184,9 +184,15 @@ const PT: Translations = {
         description:
           'API REST para consulta de CEPs com abordagem API-first, resiliência, testes de integração e infraestrutura AWS via Terraform.'
       },
-      'url-shortener': {
+      'url-shortener-backend': {
         name: 'URL Shortener',
-        description: 'Encurtador de URLs rápido e escalável construído com Java e banco de dados relacional.'
+        description:
+          'API de encurtador de URLs em Java 21 e Spring Boot com arquitetura hexagonal: Cassandra, Redis (contador e cache) e Hashids/Base62, com palavra personalizada no lugar do código.'
+      },
+      'url-shortener-frontend': {
+        name: 'URL Shortener Frontend',
+        description:
+          'SPA Angular 21 do encurtador de URLs, com palavra personalizada no link, links recentes e painel de cliques.'
       },
       'percentage-calculator': {
         name: 'Calculadora de Aumento Percentual',
@@ -343,9 +349,15 @@ const EN: Translations = {
         description:
           'REST API for Brazilian ZIP code (CEP) lookup with an API-first approach, resilience, integration tests and AWS infrastructure via Terraform.'
       },
-      'url-shortener': {
+      'url-shortener-backend': {
         name: 'URL Shortener',
-        description: 'Fast, scalable URL shortener built with Java and a relational database.'
+        description:
+          'URL shortener API in Java 21 and Spring Boot with hexagonal architecture: Cassandra, Redis (counter and cache) and Hashids/Base62, with custom words in place of the generated code.'
+      },
+      'url-shortener-frontend': {
+        name: 'URL Shortener Frontend',
+        description:
+          'Angular 21 SPA for the URL shortener, with custom words in links, recent links and a click dashboard.'
       },
       'percentage-calculator': {
         name: 'Percentage Increase Calculator',
