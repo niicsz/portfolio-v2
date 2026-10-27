@@ -126,7 +126,7 @@ const PT: Translations = {
       {
         title: 'Btoken — Token Corporativo Bradesco',
         description:
-          'Entreguei mais de 20 novas funcionalidades para o serviço de autenticação Btoken, um sistema de geração de OTP usado em múltiplos canais bancários com mais de 2 milhões de requisições por dia, reforçando a segurança e a experiência de milhões de usuários. Melhorei em 500% a performance do serviço de autenticação analisando e otimizando consultas no SQL Server afetadas pelo tratamento ineficiente de VARCHAR. Projetei e mantive integrações orientadas a eventos com Kafka e atuei no suporte L3, com análise de causa raiz de incidentes em produção. Integrei o Source Formatter ao pipeline de CI/CD, alcancei 95% de cobertura no SonarQube com JUnit 5 e Mockito e liderei melhorias no fluxo de trabalho que aumentaram a previsibilidade das entregas. Stack: Spring Boot, Swagger/OpenAPI, Azure, SQL Server e Databricks.'
+          'Entreguei mais de 20 novas funcionalidades para o serviço de autenticação Btoken, um sistema de geração de OTP usado em múltiplos canais bancários, reforçando a segurança e a experiência de milhões de usuários. Melhorei em 500% a performance do serviço de autenticação analisando e otimizando consultas no SQL Server afetadas pelo tratamento ineficiente de VARCHAR. Projetei e mantive integrações orientadas a eventos com Kafka e atuei no suporte L3, com análise de causa raiz de incidentes em produção. Integrei o Source Formatter ao pipeline de CI/CD, alcancei 95% de cobertura no SonarQube com JUnit 5 e Mockito e liderei melhorias no fluxo de trabalho que aumentaram a previsibilidade das entregas. Stack: Spring Boot, Swagger/OpenAPI, Azure, SQL Server e Databricks.'
       },
       {
         title: 'DocMatch — Análise de Documentos',
@@ -285,7 +285,7 @@ const EN: Translations = {
       {
         title: 'Btoken — Bradesco Corporate Token',
         description:
-          'Delivered 20+ new features for the Btoken Authentication service, an OTP generation system used across multiple banking channels handling over 2 million requests per day, strengthening security and user experience for millions of users. Achieved a 500% performance improvement in the authentication service by analyzing and optimizing SQL Server queries affected by inefficient VARCHAR handling. Designed and maintained event-driven integrations with Kafka and provided L3 support, performing root cause analysis of production incidents. Integrated Source Formatter into the CI/CD pipeline, reached 95% coverage on SonarQube with JUnit 5 and Mockito, and championed workflow improvements that increased delivery predictability. Stack: Spring Boot, Swagger/OpenAPI, Azure, SQL Server and Databricks.'
+          'Delivered 20+ new features for the Btoken Authentication service, an OTP generation system used across multiple banking channels, strengthening security and user experience for millions of users. Achieved a 500% performance improvement in the authentication service by analyzing and optimizing SQL Server queries affected by inefficient VARCHAR handling. Designed and maintained event-driven integrations with Kafka and provided L3 support, performing root cause analysis of production incidents. Integrated Source Formatter into the CI/CD pipeline, reached 95% coverage on SonarQube with JUnit 5 and Mockito, and championed workflow improvements that increased delivery predictability. Stack: Spring Boot, Swagger/OpenAPI, Azure, SQL Server and Databricks.'
       },
       {
         title: 'DocMatch — Document Analysis',
